@@ -648,9 +648,6 @@
                                 
                                     <div class="alert alert-success alert-dismissible fade show" id="alert-success" role="alert">
                                           <strong class="text-dark">Success!</strong><span class="text-dark"> The Message Succesfully Send.</span>
-                                          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true" class="text-dark">&times;</span>
-                                          </button>
                                         </div>
                                 <div class="row">
                                     <div class="col-md-6 col-sm-12">
@@ -741,6 +738,7 @@
 
     $(document).on('submit','#data-form',function(e){
         e.preventDefault();
+        $('#form-submit').html('Sending...');
         Email.send({ 
         Host: "smtp.gmail.com", 
         Username: "portfoliodonotreply@gmail.com", 
@@ -751,7 +749,8 @@
         Body: $('#message').val(), 
       }) 
         .then(function (message) { 
-            $('#alert-success').show();
+            $("#alert-success").show().delay(2000).fadeOut();
+            $('#form-submit').html('Send Message');
         }); 
     })
       
